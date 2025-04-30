@@ -39,10 +39,10 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-meta-descriptions-plugin
 
-      - name: Build MkDocs site
+      - name: Build MkDocs (gera a pasta site com as mudanças)
         run: mkdocs build
-        
-      - name: Deploy da Aplicação
+
+      - name: Deploy da Aplicação (joga as alterações para a branch gh-pages)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
