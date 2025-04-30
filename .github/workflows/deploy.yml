@@ -2,12 +2,29 @@ name: Deploy MkDocs no GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  variaveis-ambiente:
+    name: 🔒 Variáveis de Ambiente
     runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Validando variáveis
+        run: |
+          test -n "${{ secrets.TOKEN_MKDOCS }}" || \
+# test -n "${{ secrets.DISCORD_WEBHOOK }}" || \
+          (echo "❌ Variáveis de ambiente não configuradas" && exit 1)
+
+  configuracao:
+    name: 📦 Configuração Python
+    runs-on: ubuntu-latest
+    needs: [variaveis-ambiente]
+
     steps:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
@@ -23,6 +40,12 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-meta-descriptions-plugin
 
+  build:
+    name: 🚀 Deploy no GitHub Pages
+    runs-on: ubuntu-latest
+    needs: [variaveis-ambiente, configuracao]
+
+    steps:
       - name: Deploy da Aplicação
         uses: peaceiris/actions-gh-pages@v4
         with:
