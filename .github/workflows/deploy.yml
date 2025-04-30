@@ -23,7 +23,7 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-meta-descriptions-plugin
 
-      - name: Build e Deploy
+      - name: Deploy da Aplicação
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
