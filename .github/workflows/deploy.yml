@@ -42,12 +42,6 @@ jobs:
       - name: Build MkDocs site
         run: mkdocs build
 
-  build:
-    name: 🚀 Deploy no GitHub Pages
-    runs-on: ubuntu-latest
-    needs: [variaveis-ambiente, configuracao]
-
-    steps:
       - name: Deploy da Aplicação
         uses: peaceiris/actions-gh-pages@v4
         with:
