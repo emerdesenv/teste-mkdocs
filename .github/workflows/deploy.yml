@@ -38,8 +38,10 @@ jobs:
           pip install mkdocs
           pip install mkdocs-material
           pip install mkdocs-meta-descriptions-plugin
-
+        
       - name: Deploy da Aplicação
-        run: mkdocs gh-deploy --force
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
+          publish_dir: ./site
+          publish_branch: gh-pages
