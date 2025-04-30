@@ -39,7 +39,7 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-meta-descriptions-plugin
 
-      - name: Deploy com MkDocs
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_MKDOCS }}
+      - name: Deploy da Aplicação
         run: mkdocs gh-deploy --force
+        with:
+          github_token: ${{ secrets.TOKEN_MKDOCS }}
