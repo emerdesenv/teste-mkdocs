@@ -33,7 +33,7 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Instalando as Dependências
+      - name: Instalando as Dependêncies
         run: |
           pip install mkdocs
           pip install mkdocs-material
@@ -41,7 +41,7 @@ jobs:
 
       - name: Build MkDocs site
         run: mkdocs build
-
+        
       - name: Deploy da Aplicação
         uses: peaceiris/actions-gh-pages@v4
         with:
