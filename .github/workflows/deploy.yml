@@ -16,7 +16,6 @@ jobs:
     steps:
       - name: 🔍 Validando variáveis
         run: |
-          test -n "${{ secrets.DISCORD_WEBHOOK }}" && \
           test -n "${{ secrets.TOKEN_MKDOCS }}" || \
           (echo "❌ Variáveis de ambiente não configuradas" && exit 1)
 
@@ -40,12 +39,12 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-meta-descriptions-plugin
 
+      - name: Build MkDocs site
+        run: mkdocs build
+        
       - name: Deploy da Aplicação
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
           publish_dir: ./site
           publish_branch: gh-pages
-      
-      - name: Build MkDocs site
-        run: mkdocs build
