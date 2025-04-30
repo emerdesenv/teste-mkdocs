@@ -9,21 +9,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  variaveis-ambiente:
-    name: 🔒 Variáveis de Ambiente
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: 🔍 Validando variáveis
-        run: |
-          test -n "${{ secrets.TOKEN_MKDOCS }}" || \
-          (echo "❌ Variáveis de ambiente não configuradas" && exit 1)
-
   deploy:
-    name: 📦 Configuração e Build
     runs-on: ubuntu-latest
-    needs: [variaveis-ambiente]
-
+    
     steps:
       - name: Checkout do Repositório
         uses: actions/checkout@v4
@@ -45,6 +33,6 @@ jobs:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
           publish_dir: ./site
           publish_branch: gh-pages
-      
+
       - name: Build MkDocs site
         run: mkdocs build
