@@ -48,3 +48,8 @@ jobs:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
           publish_dir: ./site
           publish_branch: gh-pages
+
+      - name: 🔗 Exibir link do GitHub Pages
+        run: |
+          echo "✅ Seu site está disponível em:"
+          echo "👉 https://emerdesenv.github.io/teste-mkdocs/"
