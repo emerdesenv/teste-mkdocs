@@ -19,13 +19,14 @@ jobs:
 
       - name: Instalando as Dependêncies
         run: |
-          pip install mkdocs | pip install mkdocs-meta-descriptions-plugin | pip install mkdocs-material
+          pip install mkdocs
+          pip install mkdocs-material
+          pip install mkdocs-meta-descriptions-plugin
 
       - name: Build e Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
-          publish_dir: ./site
           publish_branch: gh-pages
 
       - name: Build MkDocs site
