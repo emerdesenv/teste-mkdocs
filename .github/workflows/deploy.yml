@@ -17,7 +17,6 @@ jobs:
       - name: 🔍 Validando variáveis
         run: |
           test -n "${{ secrets.TOKEN_MKDOCS }}" || \
-# test -n "${{ secrets.DISCORD_WEBHOOK }}" || \
           (echo "❌ Variáveis de ambiente não configuradas" && exit 1)
 
   configuracao:
