@@ -38,6 +38,15 @@ jobs:
           pip install mkdocs
           pip install mkdocs-material
           pip install mkdocs-meta-descriptions-plugin
+      
+      - name: Build MkDocs site
+        run: mkdocs build
+
+      - name: Upload da pasta site como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: site/
 
   build:
     name: 🚀 Deploy no GitHub Pages
@@ -51,6 +60,3 @@ jobs:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
           publish_dir: ./site
           publish_branch: gh-pages
-
-      - name: Build MkDocs site
-        run: mkdocs build
