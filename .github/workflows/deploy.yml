@@ -9,10 +9,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  runs-on: ubuntu-latest
-
   variaveis-ambiente:
     name: 🔒 Variáveis de Ambiente
+    runs-on: ubuntu-latest
 
     steps:
       - name: 🔍 Validando variáveis
@@ -21,7 +20,8 @@ jobs:
           (echo "❌ Variáveis de ambiente não configuradas" && exit 1)
 
   configuracao:
-    name: 📦 Configuração Python
+    name: 📦 Configuração Python e Build
+    runs-on: ubuntu-latest
     needs: [variaveis-ambiente]
 
     steps:
@@ -39,8 +39,12 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-meta-descriptions-plugin
 
+      - name: Build MkDocs site
+        run: mkdocs build
+
   build:
     name: 🚀 Deploy no GitHub Pages
+    runs-on: ubuntu-latest
     needs: [variaveis-ambiente, configuracao]
 
     steps:
@@ -50,6 +54,3 @@ jobs:
           github_token: ${{ secrets.TOKEN_MKDOCS }}
           publish_dir: ./site
           publish_branch: gh-pages
-
-      - name: Build MkDocs site
-        run: mkdocs build
