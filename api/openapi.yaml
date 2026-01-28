@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  title: API de Exemplo
+  description: Exemplo de API para documentação automatizada
+  version: 1.0.0
+paths:
+  /produtos:
+    get:
+      tags:
+        - Produtos
+      summary: Lista todos os produtos
+      responses:
+        '200':
+          description: Lista retornada com sucesso
+          content:
+            application/json:
+              example:
+                [
+                  {
+                    "id": 1,
+                    "nome": "Xbox Series X",
+                    "preco": 300
+                  },
+                  {
+                    "id": 2,
+                    "nome": "Playstation 5 Pro",
+                    "preco": 400
+                  }
+                ]
