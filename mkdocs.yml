@@ -12,6 +12,9 @@ plugins:
   - meta-descriptions
 
 nav:
-- Home: index.md
-- Introdução: introducao/inicio.md
-- Guia do Usuário: guia-do-usuario/configuracao.md
+  - Home: index.md
+  - Introdução: introducao/inicio.md
+  - Guia do Usuário: guia-do-usuario/configuracao.md
+  - API:
+    - Swagger UI: api/swagger-ui/index.html
+    - OpenAPI (YAML): api/openapi.yaml
